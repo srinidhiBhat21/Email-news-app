@@ -17,10 +17,9 @@ request = requests.get(url)
 #Get a dict
 content = request.json()
 
-body = ""
+body = "Subject: Today's news\n"
 for article in content["articles"][:15]:
-    body ="Subject: Today's news"+ "\n"
-    + body + (article["title"] or "") + "\n" + (article["description"] or "") + "\n" + (article["url"] or "") + "\n"
+    body += (article["title"] or "") + "\n" + (article["description"] or "") + "\n" + (article["url"] or "") + "\n"
 
 body = body.encode("utf-8")
 send_email(message=body)
